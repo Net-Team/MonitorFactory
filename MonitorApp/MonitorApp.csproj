@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net451</TargetFramework>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Logging.Debugger" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.0.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Monitor.Abstractions\Monitor.Abstractions.csproj" />
+    <ProjectReference Include="..\Monitor.Core\Monitor.Core.csproj" />
+    <ProjectReference Include="..\Monitor.NotifyClients.Email\Monitor.NotifyClients.Email.csproj" />
+    <ProjectReference Include="..\Monitor.NotifyClients.Http\Monitor.NotifyClients.Http.csproj" />
+    <ProjectReference Include="..\Monitor.Plugs.Process\Monitor.Plugs.Process.csproj" />
+    <ProjectReference Include="..\Monitor.Plugs.WebSite\Monitor.Plugs.WebSite.csproj" />
+  </ItemGroup> 
+
+  <ItemGroup>
+    <None Update="Plugs\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup> 
+
+  <ItemGroup>
+    <Folder Include="Plugs\" />
+  </ItemGroup>
+ 
+  
+</Project>

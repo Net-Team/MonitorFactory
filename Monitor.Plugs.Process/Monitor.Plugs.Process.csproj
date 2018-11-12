@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Monitor.Core\Monitor.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Monitor.Plugs.Process.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <!--编译后复制-->
+  <Target Name="CopyPlug" AfterTargets="PostBuildEvent">
+    <Message Text="正在复制输出到到指定插件目录" Importance="high" />
+    <ItemGroup>
+      <DelFiles Include="$(SolutionDir)MonitorApp\Plugs\$(ProjectName)\**" />
+      <NewFiles Include="$(TargetDir)**" />
+    </ItemGroup>
+
+    <Delete Files="@(DelFiles)" />
+    <Copy SourceFiles="@(NewFiles)" DestinationFolder="$(SolutionDir)MonitorApp\Plugs\$(ProjectName)" />
+  </Target>
+</Project>

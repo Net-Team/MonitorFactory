@@ -5,12 +5,6 @@
       "Alias": "记事本",
       "Arguments": "",
       "WorkingDirectory": "C:\\WINDOWS\\"
-    },
-    {
-      "FilePath": "E:\\tools\\小工具\\RegexApp\\RegexApp.exe",
-      "Alias": "正则表达式工具",
-      "Arguments": "Arguments",
-      "WorkingDirectory": "C:\\WINDOWS\\"
     }
   ]
 }

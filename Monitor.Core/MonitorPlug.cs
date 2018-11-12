@@ -48,8 +48,12 @@ namespace Monitor.Core
         /// <param name="context">上下文</param>
         void IMonitorPlug.Start(PlugContext context)
         {
+            var categoryName = this.GetType().Name;
+            var logger = context.LoggerFactory.CreateLogger(categoryName);
+
             try
             {
+                logger.LogInformation($"正在启动插件");
                 this.Context = context;
                 this.monitorItems = this.CreateMonitorItems().ToArray();
 
@@ -58,11 +62,10 @@ namespace Monitor.Core
                     item.OnException += OnMonitorItemException;
                     item.Start();
                 }
+                logger.LogInformation($"插件启动成功");
             }
             catch (Exception ex)
             {
-                var categoryName = this.GetType().Name;
-                var logger = context.LoggerFactory.CreateLogger(categoryName);
                 logger.LogError(0, ex, "插件执行异常");
             }
         }

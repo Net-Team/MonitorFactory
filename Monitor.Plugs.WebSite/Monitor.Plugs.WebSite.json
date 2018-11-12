@@ -2,15 +2,9 @@
   "Options": [
     {
       "Interval": "00:00:30",
-      "Timeout": "00:00:60",
+      "Timeout": "00:01:00",
       "Alias": "百度",
-      "Uri": "http://www.baidu.com"
-    },
-    {
-      "Interval": "00:00:30",
-      "Timeout": "00:00:60",
-      "Alias": "测试地址",
-      "Uri": "http://www.ceshi2018.com"
+      "Uri": "https://www.baidu.com"
     }
   ]
 }

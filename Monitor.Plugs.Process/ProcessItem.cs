@@ -46,7 +46,7 @@ namespace Monitor.Plugs.Process
                 throw new ArgumentNullException(nameof(options));
             }
 
-            if (File.Exists(this.options.FilePath) == false)
+            if (File.Exists(options.FilePath) == false)
             {
                 throw new FileNotFoundException("找不到进程文件", options.FilePath);
             }
@@ -66,6 +66,8 @@ namespace Monitor.Plugs.Process
             {
                 this.process = this.CreateProcess();
             }
+
+            this.process.EnableRaisingEvents = true;
             this.process.Exited += Process_Exited;
         }
 

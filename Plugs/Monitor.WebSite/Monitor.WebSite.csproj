@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net451;netcoreapp2.0;netstandard2.0</TargetFrameworks>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Monitor.WebSite.xml</DocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RootNamespace>Monitor.WebSite</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Monitor.Factory\Monitor.Abstracts.csproj" />
+  </ItemGroup>
+
+  <!--编译后复制-->
+  <Target Name="CopyPlug" AfterTargets="PostBuildEvent">
+    <Message Text="正在复制输出到到指定插件目录" Importance="high" />
+    <ItemGroup>
+      <DelFiles Include="$(SolutionDir)MonitorCenter\Plugs\$(ProjectName)\**" />
+      <NewFiles Include="$(TargetDir)**" />
+    </ItemGroup>
+
+    <Delete Files="@(DelFiles)" />
+    <Copy SourceFiles="@(NewFiles)" DestinationFolder="$(SolutionDir)MonitorCenter\Plugs\$(ProjectName)" />
+  </Target>
+</Project>

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net451</TargetFramework>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Monitor.Factory\Monitor.Abstracts.csproj" />
+    <ProjectReference Include="..\NotifyChannels\EmailChannel\Monitor.EmailChannel.csproj" />
+    <ProjectReference Include="..\NotifyChannels\HttpChannel\Monitor.HttpChannel.csproj" />
+    <ProjectReference Include="..\NotifyFactory\Monitor.NotifyFactory.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Plugs\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Plugs\" />
+    <Folder Include="Plugs\Monitor.Process\" />
+    <Folder Include="Plugs\Monitor.WebSite\" />
+  </ItemGroup>
+</Project>

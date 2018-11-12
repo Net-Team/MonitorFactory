@@ -1,0 +1,25 @@
+﻿{
+  "Interval": 5,
+  "Monitors": [
+    {
+      "Alias": "百度",
+      "Uri": "http://www.baidu.com",
+      "Header": [
+        {
+          "Key": "11",
+          "Value": "AAA"
+        }
+      ]
+    },
+    {
+      "Alias": "测试地址",
+      "Uri": "http://www.ceshi2018.com",
+      "Header": [
+        {
+          "Key": "11",
+          "Value": "AAA"
+        }
+      ]
+    }
+  ]
+}

@@ -92,8 +92,19 @@ namespace Monitor.Plugs.Process
             var @event = this.OnException;
             if (@event != null)
             {
-                var ex = new Exception("进程已退出");
-                @event.Invoke(this, ex);
+                try
+                {
+                    this.process = this.CreateProcess();
+                    this.process.EnableRaisingEvents = true;
+                    this.process.Exited += Process_Exited;
+
+                    var ex = new Exception($"发现进程{this.options.FilePath}退出，重启进程成功！");
+                    @event.Invoke(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    @event.Invoke(this, ex);
+                }
             }
         }
 

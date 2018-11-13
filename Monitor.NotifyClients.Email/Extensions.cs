@@ -13,14 +13,26 @@ namespace Monitor
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="options">选项</param>
-        public static INotifyClientFactory AddClient(this INotifyClientFactory factory, Action<NotifyClientOptions> options)
+        public static INotifyClientFactory AddMailClient(this INotifyClientFactory factory, Action<NotifyClientOptions> options)
         {
             var opt = new NotifyClientOptions();
             options?.Invoke(opt);
+            return factory.AddMailClient(opt);
+        }
 
-            var channel = new NotifyClient(opt);
-            factory.AddClient(channel);
-
+        /// <summary>
+        /// 添加邮件通知 
+        /// </summary>
+        /// <param name="factory"></param>
+        /// <param name="options">选项</param>
+        public static INotifyClientFactory AddMailClient(this INotifyClientFactory factory, NotifyClientOptions options)
+        {
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+            var client = new NotifyClient(options);
+            factory.AddClient(client);
             return factory;
         }
     }

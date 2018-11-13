@@ -1,0 +1,17 @@
+﻿{
+  "MailOptions": {
+    "Smtp": "mail.taichuan.com",
+    "SenderAccout": "iot@taichuan.com",
+    "SenderPassword": "tc123457",
+    "TargetEmails": [ "42309073@qq.com", "366193849@qq.com" ]
+  },
+  "HttpOptions": {
+    "Uri": "http://www.baidu.com",
+    "Header": [
+      {
+        "Key": "Token",
+        "Value": "123456"
+      }
+    ]
+  }
+}

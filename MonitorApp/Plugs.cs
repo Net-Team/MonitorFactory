@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace MonitorCenter
+namespace MonitorApp
 {
     /// <summary>
     /// 提供插件查找

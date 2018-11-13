@@ -30,6 +30,12 @@
 
   <ItemGroup>
     <Folder Include="Plugs\" />
+  </ItemGroup> 
+
+  <ItemGroup>
+    <None Update="MonitorApp.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
  
   

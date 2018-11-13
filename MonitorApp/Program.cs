@@ -4,7 +4,7 @@ using Monitor.Factories;
 using System;
 using System.Linq;
 
-namespace MonitorCenter
+namespace MonitorApp
 {
     class Program
     {
@@ -12,23 +12,11 @@ namespace MonitorCenter
 
         static void Main(string[] args)
         {
-            var notifyClientFactory = new NotifyClientFactory().AddClient(http =>
-            {
-                http.Uri = new Uri("http://www.baidu.com");
-            })
-            .AddClient(mail =>
-            {
-                mail.Smtp = "mail.taichuan.com";
-                mail.SenderAccout = "iot@taichuan.com";
-                mail.SenderPassword = "tc123457";
-                mail.TargetEmails.Add("42309073@qq.com");
-                //mail.TargetEmails.Add("366193849@qq.com");
-            });
-
+            var config = Config.Load();
             var context = new PlugContext
             {
                 LoggerFactory = new LoggerFactory().AddConsole().AddDebugger(),
-                NotifyClientFactory = notifyClientFactory
+                NotifyClientFactory = new NotifyClientFactory().AddHttpClient(config.HttpOptions).AddMailClient(config.MailOptions)
             };
 
             plugs = Plugs.FindMonitorPlugs().ToArray();

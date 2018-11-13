@@ -13,13 +13,28 @@ namespace Monitor
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="options">选项</param>
-        public static INotifyClientFactory AddClient(this INotifyClientFactory factory, Action<NotifyClientOptions> options)
+        public static INotifyClientFactory AddHttpClient(this INotifyClientFactory factory, Action<NotifyClientOptions> options)
         {
             var opt = new NotifyClientOptions();
             options?.Invoke(opt);
+            return factory.AddHttpClient(opt);
+        }
 
-            var channel = new NotifyClient(opt);
-            factory.AddClient(channel);
+        /// <summary>
+        /// 添加Http通知 
+        /// </summary>
+        /// <param name="factory"></param>
+        /// <param name="options">选项</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static INotifyClientFactory AddHttpClient(this INotifyClientFactory factory, NotifyClientOptions options)
+        {
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
+            var client = new NotifyClient(options);
+            factory.AddClient(client);
 
             return factory;
         }

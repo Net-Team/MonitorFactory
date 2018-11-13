@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Monitor.Factories
+namespace Monitor.Core
 {
     /// <summary>
     /// 表示监控通知工厂

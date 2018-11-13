@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Monitor;
-using Monitor.Factories;
+using Monitor.Core;
 using System;
 using System.Linq;
 

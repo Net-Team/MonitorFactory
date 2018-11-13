@@ -18,8 +18,6 @@
     <ProjectReference Include="..\Monitor.Core\Monitor.Core.csproj" />
     <ProjectReference Include="..\Monitor.NotifyClients.Email\Monitor.NotifyClients.Email.csproj" />
     <ProjectReference Include="..\Monitor.NotifyClients.Http\Monitor.NotifyClients.Http.csproj" />
-    <ProjectReference Include="..\Monitor.Plugs.Process\Monitor.Plugs.Process.csproj" />
-    <ProjectReference Include="..\Monitor.Plugs.WebSite\Monitor.Plugs.WebSite.csproj" />
   </ItemGroup> 
 
   <ItemGroup>

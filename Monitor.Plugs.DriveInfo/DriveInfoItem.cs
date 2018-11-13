@@ -1,6 +1,7 @@
 ﻿using Monitor.Core;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Monitor.Plugs.DriveInfo
 {
@@ -15,16 +16,14 @@ namespace Monitor.Plugs.DriveInfo
         private readonly DriveInfoOptions options;
 
         /// <summary>
-        /// 是否通知过一次
-        /// </summary>
-        private bool IsNotify = false;
-
-
-        /// <summary>
         /// 磁盘信息
         /// </summary>
         private System.IO.DriveInfo driveInfo;
 
+        /// <summary>
+        /// 上一次空闲比例
+        /// </summary>
+        private double lastFreeSpace = 100d;
 
         /// <summary>
         /// 磁盘监控对象
@@ -54,19 +53,16 @@ namespace Monitor.Plugs.DriveInfo
             //现剩余空间百分比
             var freeSpace = ((driveInfo.TotalFreeSpace / (double)driveInfo.TotalSize) * 100);
 
-            //如果当前剩余比上一次小且 小于 限定值报警
-            if (freeSpace < this.options.Residual)
+
+            foreach (var residual in this.options.Residuals.OrderBy(item => item))
             {
-                if (this.IsNotify == false)
+                if (lastFreeSpace > residual && residual > freeSpace)
                 {
-                    this.IsNotify = true;
-                    throw new Exception($"磁盘 {this.options.DriveName} 当前可用大小：{driveInfo.TotalFreeSpace},可用空间已经不足{this.options.Residual}%");
+                    lastFreeSpace = freeSpace;
+                    throw new Exception($"磁盘 {this.options.DriveName} 当前可用大小：{driveInfo.TotalFreeSpace / 1024 / 1024}M,可用空间已经不足 {residual}%.");
                 }
             }
-            else
-            {
-                this.IsNotify = false;
-            }
+            lastFreeSpace = freeSpace;
 #if NET45
             await Task.FromResult<object>(null);
 #else

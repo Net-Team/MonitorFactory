@@ -3,7 +3,12 @@
     {
       "DriveName": "C",
       "Alias": "C盘系统盘",
-      "Residual": 26,
+      "Residuals": [
+        1,
+        2,
+        4,
+        8
+      ],
       "Interval": "00:00:5"
     }
   ]

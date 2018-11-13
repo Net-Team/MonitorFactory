@@ -19,6 +19,18 @@ namespace Monitor.Core
         /// </summary>
         private readonly TimerMonitorItemOptions options;
 
+#if NET45
+        /// <summary>
+        /// 获取已完成的任务
+        /// </summary>
+        protected readonly Task CompletedTask = Task.FromResult<object>(null);
+#else
+        /// <summary>
+        /// 获取已完成的任务
+        /// </summary>
+        protected readonly Task CompletedTask = Task.CompletedTask;
+#endif
+
         /// <summary>
         /// 获取别名
         /// </summary>

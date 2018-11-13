@@ -48,7 +48,7 @@ namespace Monitor.Plugs.Service
                 this.service.Refresh();
                 if (this.service.Status != ServiceControllerStatus.Stopped)
                 {
-                    return Task.FromResult<object>(null);
+                    return this.CompletedTask;
                 }
 
                 this.service.Start();

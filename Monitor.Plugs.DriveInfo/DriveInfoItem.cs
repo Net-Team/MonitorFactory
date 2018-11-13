@@ -62,11 +62,8 @@ namespace Monitor.Plugs.DriveInfo
                 }
             }
             lastFreeSpace = freeSpace;
-#if NET45
-            await Task.FromResult<object>(null);
-#else
-            await Task.CompletedTask;
-#endif
+
+            await this.CompletedTask;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace MonitorCenter
                 mail.SenderAccout = "iot@taichuan.com";
                 mail.SenderPassword = "tc123457";
                 mail.TargetEmails.Add("42309073@qq.com");
-                mail.TargetEmails.Add("366193849@qq.com");
+                //mail.TargetEmails.Add("366193849@qq.com");
             });
 
             var context = new PlugContext

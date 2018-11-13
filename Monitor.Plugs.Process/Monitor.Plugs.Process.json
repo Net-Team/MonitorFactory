@@ -1,10 +1,16 @@
 ﻿{
   "Options": [
     {
-      "FilePath": "C:\\WINDOWS\\system32\\notepad.exe",
-      "Alias": "记事本",
+      "FilePath": "E:\\MircroServer\\门口机在线状态服务\\RKEOnlineStateService.exe",
+      "Alias": "门口机在线状态服务",
       "Arguments": "",
-      "WorkingDirectory": "C:\\WINDOWS\\"
+      "WorkingDirectory": ""
+    },
+    {
+      "FilePath": "E:\\MircroServer\\HttpNotify\\HttpNotifyService.exe",
+      "Alias": "Http通知服务",
+      "Arguments": "",
+      "WorkingDirectory": ""
     }
   ]
 }

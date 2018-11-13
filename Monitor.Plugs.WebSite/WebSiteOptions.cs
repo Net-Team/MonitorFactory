@@ -22,5 +22,10 @@ namespace Monitor.Plugs.WebSite
         /// 网站检测Uri
         /// </summary>
         public Uri Uri { get; set; }
+
+        /// <summary>
+        /// 最大通知次数
+        /// </summary>
+        public int MaxNotify { get; set; } = 3;
     }
 }

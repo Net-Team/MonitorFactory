@@ -16,7 +16,12 @@ namespace Monitor.Plugs.WebSite
         /// <summary>
         /// 选项
         /// </summary>
-        private readonly WebSiteOptions options;        
+        private readonly WebSiteOptions options;
+
+        /// <summary>
+        /// 通知次数
+        /// </summary>
+        private int notifyTimes = 0;
 
         /// <summary>
         /// 网站监控对象
@@ -46,10 +51,22 @@ namespace Monitor.Plugs.WebSite
             var api = HttpApiFactory.Create<IWebSiteApi>();
             var token = new CancellationTokenSource(this.options.Timeout).Token;
 
-            await api
-                .CheckAsync(this.options.Uri, token)
-                .Retry(this.options.Retry)
-                .WhenCatch<Exception>();
+            try
+            {
+                await api
+                    .CheckAsync(this.options.Uri, token)
+                    .Retry(this.options.Retry)
+                    .WhenCatch<Exception>();
+                this.notifyTimes = 0;
+            }
+            catch (Exception ex)
+            {
+                if (this.notifyTimes < this.options.MaxNotify)
+                {
+                    this.notifyTimes += 1;
+                    throw ex;
+                }
+            }
         }
 
         /// <summary>

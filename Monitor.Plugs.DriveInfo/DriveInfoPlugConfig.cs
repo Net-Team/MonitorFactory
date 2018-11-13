@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Monitor.Plugs.DriveInfo
+﻿namespace Monitor.Plugs.DriveInfo
 {
     /// <summary>
     /// 表示磁盘监控插件配置

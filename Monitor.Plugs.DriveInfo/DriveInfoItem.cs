@@ -1,7 +1,7 @@
 ﻿using Monitor.Core;
 using System;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Monitor.Plugs.DriveInfo
 {
@@ -18,7 +18,8 @@ namespace Monitor.Plugs.DriveInfo
         /// <summary>
         /// 磁盘信息
         /// </summary>
-        private System.IO.DriveInfo driveInfo;
+        private readonly System.IO.DriveInfo driveInfo;
+
 
         /// <summary>
         /// 上一次空闲比例
@@ -29,19 +30,18 @@ namespace Monitor.Plugs.DriveInfo
         /// 磁盘监控对象
         /// </summary>
         /// <param name="options"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        /// <exception cref="Exception"></exception>
         public DriveInfoItem(DriveInfoOptions options)
             : base(options)
         {
-            this.options = options ?? throw new ArgumentNullException(nameof(options));
-
+            this.options = options;
             this.driveInfo = new System.IO.DriveInfo(this.options.DriveName);
-            if (driveInfo.IsReady == false)
+
+            if (this.driveInfo.IsReady == false)
             {
                 throw new ArgumentException($"磁盘 {this.options.DriveName} 未准备好");
             }
-
         }
 
         /// <summary>
@@ -50,9 +50,8 @@ namespace Monitor.Plugs.DriveInfo
         /// <returns></returns>
         protected override async Task CheckAsync()
         {
-            //现剩余空间百分比
+            // 现剩余空间百分比
             var freeSpace = ((driveInfo.TotalFreeSpace / (double)driveInfo.TotalSize) * 100);
-
 
             foreach (var residual in this.options.Residuals.OrderBy(item => item))
             {
@@ -68,7 +67,6 @@ namespace Monitor.Plugs.DriveInfo
 #else
             await Task.CompletedTask;
 #endif
-
         }
     }
 }

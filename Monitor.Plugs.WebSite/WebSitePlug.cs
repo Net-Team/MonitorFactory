@@ -17,7 +17,7 @@ namespace Monitor.Plugs.WebSite
             var config = this.LoadJsonConfig<WebSitePlugConfig>();
             foreach (var item in config.Options)
             {
-                yield return new WebSiteItem(item);
+                yield return new WebSiteItem(item, this.Context.LoggerFactory);
             }
         }
     }

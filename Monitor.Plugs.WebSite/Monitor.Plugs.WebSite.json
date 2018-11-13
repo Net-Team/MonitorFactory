@@ -1,60 +1,21 @@
 ﻿{
   "Options": [
     {
-      "Interval": "00:05:00",
-      "Timeout": "00:01:00",
-      "Retry": 3,
-      "Alias": "珠海私有云",
-      "Uri": "http://haina.taichuan.net/"
-    },
-    {
-      "Interval": "00:05:00",
-      "Timeout": "00:01:00",
-      "Retry": 3,
-      "Alias": "公有云正式平台",
-      "Uri": "http://public.taichuan.com/"
-    },
-    {
-      "Interval": "00:05:00",
-      "Timeout": "00:01:00",
-      "Retry": 3,
-      "Alias": "U家网",
-      "Uri": "http://www.ulife.com.cn/"
-    },
-    {
-      "Interval": "00:05:00",
-      "Timeout": "00:01:00",
-      "Retry": 3,
-      "Alias": "四维新媒体",
-      "Uri": "http://media.zhsiwei.com/"
-    },
-    {
-      "Interval": "00:05:00",
-      "Timeout": "00:01:00",
-      "Retry": 3,
-      "Alias": "珠海Tcc 1.0平台",
-      "Uri": "http://tcc.taichuan.com/"
-    },
-    {
-      "Interval": "00:05:00",
-      "Timeout": "00:01:00",
-      "Retry": 3,
-      "Alias": "海纳硬件平台",
-      "Uri": "https://iot.taichuan.net/"
-    },
-    {
-      "Interval": "00:05:00",
-      "Timeout": "00:01:00",
-      "Retry": 3,
-      "Alias": "太川官方网站",
-      "Uri": "http://www.taichuan.com/"
-    },
-    {
       "Interval": "00:00:10",
       "Timeout": "00:01:00",
       "Retry": 3,
       "Alias": "太川官方网站333",
-      "Uri": "http://www.taichuan111.com/"
+      "Uri": "http://www.taichuan.com/",
+      "Method": "POST",
+      "Header": [
+        {
+          "Key": "User-Agent",
+          "Value": "xxxx"
+        }
+      ],
+      "ContentType": "application/json",
+      "Content": "{}",
+      "ResultMatch": "*"
     }
   ]
 }

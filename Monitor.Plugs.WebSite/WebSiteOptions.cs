@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Monitor.Core;
 
 namespace Monitor.Plugs.WebSite
@@ -8,6 +9,11 @@ namespace Monitor.Plugs.WebSite
     /// </summary>
     public class WebSiteOptions : TimerMonitorItemOptions
     {
+        /// <summary>
+        /// 最大通知次数
+        /// </summary>
+        public int MaxNotify { get; set; } = 3;
+
         /// <summary>
         /// 请求超时时间
         /// </summary>
@@ -24,8 +30,28 @@ namespace Monitor.Plugs.WebSite
         public Uri Uri { get; set; }
 
         /// <summary>
-        /// 最大通知次数
+        /// 请求方式
         /// </summary>
-        public int MaxNotify { get; set; } = 3;
+        public string Method { get; set; } = "GET";
+
+        /// <summary>
+        /// 请求头
+        /// </summary>
+        public KeyValuePair<string, string>[] Header { get; set; } = new KeyValuePair<string, string>[0];
+
+        /// <summary>
+        /// 内容类型
+        /// </summary>
+        public string ContentType { get; set; }
+
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public string Content { get; set; }
+
+        /// <summary>
+        /// 响应结果匹配
+        /// </summary>
+        public string ResultMatch { get; set; } = "*";
     }
 }

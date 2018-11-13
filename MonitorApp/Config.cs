@@ -1,16 +1,31 @@
-﻿using Newtonsoft.Json;
+﻿using Monitor.NotifyClients.Email;
+using Monitor.NotifyClients.Http;
+using Newtonsoft.Json;
 using System.IO;
 using System.Text;
 
 namespace MonitorApp
 {
+    /// <summary>
+    /// 表示配置
+    /// </summary>
     public class Config
     {
-        public Monitor.NotifyClients.Email.NotifyClientOptions MailOptions { get; set; }
+        /// <summary>
+        /// 邮件通知选项
+        /// </summary>
+        public MailNotifyClientOptions MailOptions { get; set; }
 
-        public Monitor.NotifyClients.Http.NotifyClientOptions HttpOptions { get; set; }
+        /// <summary>
+        /// http通知选项
+        /// </summary>
+        public HttpNotifyClientOptions HttpOptions { get; set; }
 
 
+        /// <summary>
+        /// 加载配置
+        /// </summary>
+        /// <returns></returns>
         public static Config Load()
         {
             var file = Path.ChangeExtension(typeof(Config).Assembly.Location, ".json");

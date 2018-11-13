@@ -13,9 +13,9 @@ namespace Monitor
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="options">选项</param>
-        public static INotifyClientFactory AddMailClient(this INotifyClientFactory factory, Action<NotifyClientOptions> options)
+        public static INotifyClientFactory AddMailClient(this INotifyClientFactory factory, Action<MailNotifyClientOptions> options)
         {
-            var opt = new NotifyClientOptions();
+            var opt = new MailNotifyClientOptions();
             options?.Invoke(opt);
             return factory.AddMailClient(opt);
         }
@@ -25,13 +25,13 @@ namespace Monitor
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="options">选项</param>
-        public static INotifyClientFactory AddMailClient(this INotifyClientFactory factory, NotifyClientOptions options)
+        public static INotifyClientFactory AddMailClient(this INotifyClientFactory factory, MailNotifyClientOptions options)
         {
             if (options == null)
             {
                 throw new ArgumentNullException(nameof(options));
             }
-            var client = new NotifyClient(options);
+            var client = new MailNotifyClient(options);
             factory.AddClient(client);
             return factory;
         }

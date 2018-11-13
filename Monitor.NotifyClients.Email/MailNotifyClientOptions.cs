@@ -5,7 +5,7 @@ namespace Monitor.NotifyClients.Email
     /// <summary>
     /// 表示邮件通知选项
     /// </summary>
-    public class NotifyClientOptions
+    public class MailNotifyClientOptions
     {
         /// <summary>
         /// 邮件服务器

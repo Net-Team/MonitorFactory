@@ -6,7 +6,7 @@ namespace Monitor.NotifyClients.Http
     /// <summary>
     /// Http 消息通知选项
     /// </summary>
-    public class NotifyClientOptions
+    public class HttpNotifyClientOptions
     {
         /// <summary>
         /// 或取或设置接收者接口地址

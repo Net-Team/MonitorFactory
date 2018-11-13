@@ -10,17 +10,17 @@ namespace Monitor.NotifyClients.Http
     /// <summary>
     /// 表示Http通知通道
     /// </summary>
-    public class NotifyClient : INotifyClient
+    public class HttpNotifyClient : INotifyClient
     {
         /// <summary>
         /// 选项
         /// </summary>
-        private readonly NotifyClientOptions opt;
+        private readonly HttpNotifyClientOptions opt;
 
         /// <summary>
         /// Http通知通道
         /// </summary>
-        static NotifyClient()
+        static HttpNotifyClient()
         {
             HttpApiFactory.Add<IHttpNotifyApi>();
         }
@@ -29,7 +29,7 @@ namespace Monitor.NotifyClients.Http
         /// Http通知通道
         /// </summary>
         /// <param name="opt">选项</param>
-        public NotifyClient(NotifyClientOptions opt)
+        public HttpNotifyClient(HttpNotifyClientOptions opt)
         {
             this.opt = opt;
         }

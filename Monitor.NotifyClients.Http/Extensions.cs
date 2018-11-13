@@ -13,9 +13,9 @@ namespace Monitor
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="options">选项</param>
-        public static INotifyClientFactory AddHttpClient(this INotifyClientFactory factory, Action<NotifyClientOptions> options)
+        public static INotifyClientFactory AddHttpClient(this INotifyClientFactory factory, Action<HttpNotifyClientOptions> options)
         {
-            var opt = new NotifyClientOptions();
+            var opt = new HttpNotifyClientOptions();
             options?.Invoke(opt);
             return factory.AddHttpClient(opt);
         }
@@ -26,14 +26,14 @@ namespace Monitor
         /// <param name="factory"></param>
         /// <param name="options">选项</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public static INotifyClientFactory AddHttpClient(this INotifyClientFactory factory, NotifyClientOptions options)
+        public static INotifyClientFactory AddHttpClient(this INotifyClientFactory factory, HttpNotifyClientOptions options)
         {
             if (options == null)
             {
                 throw new ArgumentNullException(nameof(options));
             }
 
-            var client = new NotifyClient(options);
+            var client = new HttpNotifyClient(options);
             factory.AddClient(client);
 
             return factory;

@@ -10,18 +10,18 @@ namespace Monitor.NotifyClients.Email
     /// <summary>
     /// 表示邮件通知通道
     /// </summary>
-    public class NotifyClient : INotifyClient
+    public class MailNotifyClient : INotifyClient
     {
         /// <summary>
         /// 选项
         /// </summary>
-        private readonly NotifyClientOptions opt;
+        private readonly MailNotifyClientOptions opt;
 
         /// <summary>
         /// 邮件通知
         /// </summary>
         /// <param name="opt">选项</param>
-        public NotifyClient(NotifyClientOptions opt)
+        public MailNotifyClient(MailNotifyClientOptions opt)
         {
             this.opt = opt;
         }

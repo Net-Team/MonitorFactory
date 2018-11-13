@@ -21,6 +21,6 @@ namespace Monitor.Plugs.DriveInfo
         /// <summary>
         /// 剩余百分比
         /// </summary>
-        public int Residual { get; set; }
+        public int[] Residuals { get; set; }
     }
 }

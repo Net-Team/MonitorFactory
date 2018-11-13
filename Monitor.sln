@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monitor.Plugs.Service", "Mo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monitor.Plugs.DriveInfo", "Monitor.Plugs.DriveInfo\Monitor.Plugs.DriveInfo.csproj", "{D2000E41-A5E5-4E2C-9D89-64B0B6DA372E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Plugs.Telnet", "Monitor.Plugs.Telnet\Monitor.Plugs.Telnet.csproj", "{3880B07A-C1DB-4D53-B369-592747E116D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{D2000E41-A5E5-4E2C-9D89-64B0B6DA372E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2000E41-A5E5-4E2C-9D89-64B0B6DA372E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2000E41-A5E5-4E2C-9D89-64B0B6DA372E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3880B07A-C1DB-4D53-B369-592747E116D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3880B07A-C1DB-4D53-B369-592747E116D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3880B07A-C1DB-4D53-B369-592747E116D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3880B07A-C1DB-4D53-B369-592747E116D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

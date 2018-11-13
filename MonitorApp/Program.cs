@@ -13,10 +13,20 @@ namespace MonitorApp
         static void Main(string[] args)
         {
             var config = Config.Load();
+            var notifyClientFactory = new NotifyClientFactory();
+            if (config.MailOptions != null)
+            {
+                notifyClientFactory.AddMailClient(config.MailOptions);
+            }
+            if (config.HttpOptions != null)
+            {
+                notifyClientFactory.AddHttpClient(config.HttpOptions);
+            }
+
             var context = new PlugContext
             {
-                LoggerFactory = new LoggerFactory().AddConsole().AddDebugger(),
-                NotifyClientFactory = new NotifyClientFactory().AddHttpClient(config.HttpOptions).AddMailClient(config.MailOptions)
+                NotifyClientFactory = notifyClientFactory,
+                LoggerFactory = new LoggerFactory().AddConsole().AddDebugger()
             };
 
             plugs = Plugs.FindMonitorPlugs().ToArray();

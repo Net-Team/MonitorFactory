@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="WebApiClient.AOT" Version="0.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Monitor.Core\Monitor.Core.csproj" />
   </ItemGroup>
   

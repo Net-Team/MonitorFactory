@@ -10,7 +10,7 @@ namespace Monitor.Core
         /// <summary>
         /// 请求时间间隔
         /// </summary>
-        public TimeSpan Interval { get; set; }
+        public TimeSpan Interval { get; set; } = TimeSpan.FromSeconds(30d);
 
         /// <summary>
         /// 网站另名

@@ -43,12 +43,21 @@ namespace Monitor.Plugs.Service
         /// <returns></returns>
         protected override Task CheckAsync()
         {
-            if (this.service.Status != ServiceControllerStatus.Stopped)
+            try
             {
-                return Task.FromResult<object>(null);
+                this.service.Refresh();
+                if (this.service.Status != ServiceControllerStatus.Stopped)
+                {
+                    return Task.FromResult<object>(null);
+                }
+
+                this.service.Start();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"发现服务{this.Alias}停止，重启服务失败！", ex);
             }
 
-            this.service.Start();
             throw new Exception($"发现服务{this.Alias}停止，重启服务成功！");
         }
     }

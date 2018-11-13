@@ -103,7 +103,8 @@ namespace Monitor.Plugs.Process
                 }
                 catch (Exception ex)
                 {
-                    @event.Invoke(this, ex);
+                    var exception = new Exception($"发现进程{this.options.FilePath}退出，重启进程失败！", ex);
+                    @event.Invoke(this, exception);
                 }
             }
         }

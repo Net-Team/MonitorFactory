@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monitor.Abstractions", "Monitor.Abstractions\Monitor.Abstractions.csproj", "{41312D6C-220F-4670-A060-2E2451CFD141}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonitorApp", "MonitorApp\MonitorApp.csproj", "{F95E5F74-D3D4-465E-BC61-8A2769C7B8F0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monitor.Core", "Monitor.Core\Monitor.Core.csproj", "{CA04EF23-E401-4EDC-894B-9FFAF0DA1656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Plugs.Service", "Monitor.Plugs.Service\Monitor.Plugs.Service.csproj", "{CD102E56-F4BD-49FF-8325-B73C602EB516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{CA04EF23-E401-4EDC-894B-9FFAF0DA1656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA04EF23-E401-4EDC-894B-9FFAF0DA1656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA04EF23-E401-4EDC-894B-9FFAF0DA1656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD102E56-F4BD-49FF-8325-B73C602EB516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD102E56-F4BD-49FF-8325-B73C602EB516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD102E56-F4BD-49FF-8325-B73C602EB516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD102E56-F4BD-49FF-8325-B73C602EB516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

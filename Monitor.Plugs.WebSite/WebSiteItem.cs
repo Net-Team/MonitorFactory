@@ -16,7 +16,7 @@ namespace Monitor.Plugs.WebSite
         /// <summary>
         /// 选项
         /// </summary>
-        private readonly WebSiteOptions options;
+        private readonly WebSiteOptions options;        
 
         /// <summary>
         /// 网站监控对象

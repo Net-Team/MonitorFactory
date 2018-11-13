@@ -16,11 +16,6 @@ namespace Monitor.Plugs.DriveInfo
         private readonly DriveInfoOptions options;
 
         /// <summary>
-        /// 是否通知过一次
-        /// </summary>
-        private bool IsNotify = false;
-
-        /// <summary>
         /// 磁盘信息
         /// </summary>
         private System.IO.DriveInfo driveInfo;
@@ -29,7 +24,6 @@ namespace Monitor.Plugs.DriveInfo
         /// 上一次空闲比例
         /// </summary>
         private double lastFreeSpace = 100d;
-
 
         /// <summary>
         /// 磁盘监控对象

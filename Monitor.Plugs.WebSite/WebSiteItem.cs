@@ -98,7 +98,7 @@ namespace Monitor.Plugs.WebSite
         /// <summary>
         /// 站点接口
         /// </summary>
-        [TraceFilter]
+        [TraceFilter(TraceResponse = false)]
         private interface IWebSiteApi : IHttpApi
         {
             /// <summary>

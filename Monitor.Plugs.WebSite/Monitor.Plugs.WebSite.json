@@ -3,6 +3,7 @@
     {
       "Interval": "00:00:30",
       "Timeout": "00:01:00",
+      "Retry": 3,
       "Alias": "百度",
       "Uri": "https://www.baidu.com"
     }

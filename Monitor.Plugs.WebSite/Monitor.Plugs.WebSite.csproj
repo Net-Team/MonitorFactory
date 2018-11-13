@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="WebApiClient.AOT" Version="0.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Monitor.Core\Monitor.Core.csproj" />
   </ItemGroup>
   
@@ -15,7 +19,7 @@
   </ItemGroup>
   
   <!--编译后复制-->
-  <Target Name="CopyPlug" AfterTargets="PostBuildEvent">
+  <Target Name="CopyPlug" AfterTargets="PostBuildEvent" Condition="'$(TargetFramework)' == 'net45'">
     <Message Text="正在复制输出到到指定插件目录" Importance="high" />
     <ItemGroup>
       <DelFiles Include="$(SolutionDir)MonitorApp\Plugs\$(ProjectName)\**" />

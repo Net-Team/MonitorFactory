@@ -1,7 +1,10 @@
 ﻿using Monitor.Core;
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
+using WebApiClient;
+using WebApiClient.Attributes;
 
 namespace Monitor.Plugs.WebSite
 {
@@ -18,12 +21,20 @@ namespace Monitor.Plugs.WebSite
         /// <summary>
         /// 网站监控对象
         /// </summary>
+        static WebSiteItem()
+        {
+            HttpApiFactory.Add<IWebSiteApi>();
+        }
+
+        /// <summary>
+        /// 网站监控对象
+        /// </summary>
         /// <param name="options"></param>
         /// <exception cref="ArgumentNullException"></exception>
         public WebSiteItem(WebSiteOptions options)
             : base(options)
         {
-            this.options = options ?? throw new ArgumentNullException(nameof(options));
+            this.options = options;
         }
 
         /// <summary>
@@ -32,11 +43,28 @@ namespace Monitor.Plugs.WebSite
         /// <returns></returns>
         protected override async Task CheckAsync()
         {
-            using (var client = new HttpClient { Timeout = this.options.Timeout })
-            {
-                var response = await client.GetAsync(this.options.Uri);
-                response.EnsureSuccessStatusCode();
-            }
+            var api = HttpApiFactory.Create<IWebSiteApi>();
+            var token = new CancellationTokenSource(this.options.Timeout).Token;
+
+            await api
+                .CheckAsync(this.options.Uri, token)
+                .Retry(this.options.Retry)
+                .WhenCatch<Exception>();
+        }
+
+        /// <summary>
+        /// 站点接口
+        /// </summary>
+        private interface IWebSiteApi : IHttpApi
+        {
+            /// <summary>
+            /// 检测
+            /// </summary>
+            /// <param name="uri"></param>
+            /// <param name="token"></param>
+            /// <returns></returns>
+            [HttpGet]
+            ITask<HttpResponseMessage> CheckAsync([Uri] Uri uri, CancellationToken token);
         }
     }
 }

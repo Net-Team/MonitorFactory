@@ -11,7 +11,12 @@ namespace Monitor.Plugs.WebSite
         /// <summary>
         /// 请求超时时间
         /// </summary>
-        public TimeSpan Timeout { get; set; }
+        public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(1d);        
+
+        /// <summary>
+        /// 重试次数
+        /// </summary>
+        public int Retry { get; set; } = 3;
 
         /// <summary>
         /// 网站检测Uri

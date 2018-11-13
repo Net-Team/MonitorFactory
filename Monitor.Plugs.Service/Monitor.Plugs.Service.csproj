@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net45</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Monitor.Core\Monitor.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ServiceProcess" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Monitor.Plugs.Service.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <!--编译后复制-->
+  <Target Name="CopyPlug" AfterTargets="PostBuildEvent" Condition="'$(TargetFramework)' == 'net45'">
+    <Message Text="正在复制输出到到指定插件目录" Importance="high" />
+    <ItemGroup>
+      <DelFiles Include="$(SolutionDir)MonitorApp\Plugs\$(ProjectName)\**" />
+      <NewFiles Include="$(TargetDir)**" />
+    </ItemGroup>
+
+    <Delete Files="@(DelFiles)" />
+    <Copy SourceFiles="@(NewFiles)" DestinationFolder="$(SolutionDir)MonitorApp\Plugs\$(ProjectName)" />
+  </Target>
+</Project>

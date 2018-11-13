@@ -1,42 +1,19 @@
-﻿using Microsoft.Extensions.Logging;
-using Monitor;
-using Monitor.Core;
-using System;
-using System.Linq;
+﻿using Topshelf;
 
 namespace MonitorApp
 {
     class Program
     {
-        static IMonitorPlug[] plugs;
-
         static void Main(string[] args)
         {
-            var config = Config.Load();
-            var notifyClientFactory = new NotifyClientFactory();
-            if (config.MailOptions != null)
+            HostFactory.Run(x =>
             {
-                notifyClientFactory.AddMailClient(config.MailOptions);
-            }
-            if (config.HttpOptions != null)
-            {
-                notifyClientFactory.AddHttpClient(config.HttpOptions);
-            }
-
-            var context = new PlugContext
-            {
-                NotifyClientFactory = notifyClientFactory,
-                LoggerFactory = new LoggerFactory().AddConsole().AddDebugger()
-            };
-
-            plugs = Plugs.FindMonitorPlugs().ToArray();
-            foreach (var item in plugs)
-            {
-                item.Start(context);
-            }
-
-            Console.WriteLine("启动完成!");
-            Console.ReadKey();
+                x.Service<XControl>();
+                x.RunAsLocalSystem();
+                x.SetServiceName(nameof(MonitorApp));
+                x.SetDisplayName(nameof(MonitorApp));
+                x.SetDescription(nameof(MonitorApp));
+            });
         }
     }
 }

@@ -1,0 +1,11 @@
+﻿{
+  "Options": [
+    {
+      "DriveName": "C",
+      "Alias": "C盘系统盘",
+      "Residual": 26,
+      "Interval": "00:00:5"
+    }
+  ]
+
+}

@@ -67,6 +67,7 @@ namespace MonitorApp
             var plug = Activator.CreateInstance(type) as IMonitorPlug;
 
             plug.OnConfigChanged += OnConfigChanged;
+            item.Dispose();
             plug.Start(this.context);
 
             this.plugs[type] = plug;

@@ -176,6 +176,10 @@ namespace Monitor.Core
         /// </summary>
         public void Dispose()
         {
+            this.Context
+                    .LoggerFactory
+                    .CreateLogger("LoggerFactory")
+                    .LogInformation($"正在释放 {this.GetType().Name}");
             if (this.IsDisposed == false)
             {
                 this.Dispose(true);

@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Monitor.Core
 {
     /// <summary>
-    /// 表示监控对象基类
+    /// 表示监控插件基类
     /// </summary>
     public abstract class MonitorPlug<TMonitorItem> : IMonitorPlug where TMonitorItem : IMonitorItem
     {
@@ -19,9 +20,62 @@ namespace Monitor.Core
         private IMonitorItem[] monitorItems;
 
         /// <summary>
+        /// 延时timer
+        /// </summary>
+        private readonly Timer delayTimer;
+
+        /// <summary>
+        /// 文件监控
+        /// </summary>
+        private readonly FileSystemWatcher watcher;
+
+
+        /// <summary>
         /// 获取插件上下文
         /// </summary>
         protected PlugContext Context { get; private set; }
+
+        /// <summary>
+        /// 配置文件变化后
+        /// </summary>
+        public event Action<IMonitorPlug> OnConfigChanged;
+
+        /// <summary>
+        /// 监控插件基类
+        /// </summary>
+        public MonitorPlug()
+        {
+            var dllFile = this.GetType().Assembly.Location;
+            var jsonFile = Path.ChangeExtension(Path.GetFileName(dllFile), ".json");
+            var path = Path.GetDirectoryName(dllFile);
+            this.watcher = new FileSystemWatcher(path, jsonFile);
+            this.watcher.NotifyFilter = NotifyFilters.LastWrite;
+            this.watcher.EnableRaisingEvents = true;
+            this.watcher.Changed += ConfigChanged;
+
+            this.delayTimer = new Timer(this.OnTimerTick, null, Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
+        }
+
+
+        /// <summary>
+        /// 配置文件变化时
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfigChanged(object sender, FileSystemEventArgs e)
+        {
+            this.delayTimer.Change(TimeSpan.FromSeconds(1d), Timeout.InfiniteTimeSpan);
+        }
+
+        /// <summary>
+        /// 配置文件变化时
+        /// </summary>
+        /// <param name="state"></param>
+        private void OnTimerTick(object state)
+        {
+            var @event = this.OnConfigChanged;
+            @event?.Invoke(this);
+        }
 
         /// <summary>
         /// 加载json配置
@@ -144,6 +198,9 @@ namespace Monitor.Core
         /// <param name="disposing">是否也释放托管资源</param>
         protected virtual void Dispose(bool disposing)
         {
+            this.watcher.EnableRaisingEvents = false;
+            this.watcher.Dispose();
+
             if (this.monitorItems != null)
             {
                 foreach (var item in this.monitorItems)

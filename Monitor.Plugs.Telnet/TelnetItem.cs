@@ -54,6 +54,7 @@ namespace Monitor.Plugs.Telnet
                 await tcpClient.ConnectAsync(this.options.Host, this.options.Port);
                 tcpClient.Close();
                 firstNotifyTime = DateTime.MinValue;
+                lastTimeSpan = TimeSpan.Zero;
             }
             catch (Exception ex)
             {

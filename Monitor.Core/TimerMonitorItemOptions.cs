@@ -13,7 +13,7 @@ namespace Monitor.Core
         public TimeSpan Interval { get; set; } = TimeSpan.FromSeconds(30d);
 
         /// <summary>
-        /// 网站另名
+        /// 监控对象别名
         /// </summary>
         public string Alias { get; set; }
     }
